@@ -45,6 +45,13 @@ mysqli_close($connect);
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Welcome - <?php echo $row['first_name']; ?></title>
   <?php require_once 'components/boot.php' ?>
+  <style>
+      .userImage {
+          width: 100%;
+          height: 100%;
+          margin: auto;
+      }
+  </style>
 </head>
 
 <body>
