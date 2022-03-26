@@ -45,17 +45,6 @@ mysqli_close($connect);
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Welcome - <?php echo $row['first_name']; ?></title>
   <?php require_once 'components/boot.php' ?>
-  <style>
-      .userImage {
-          width: 200px;
-          height: 200px;
-      }
-
-      .hero {
-          background: rgb(2, 0, 36);
-          background: linear-gradient(24deg, rgba(2, 0, 36, 1) 0%, rgba(0, 212, 255, 1) 100%);
-      }
-  </style>
 </head>
 
 <body>
