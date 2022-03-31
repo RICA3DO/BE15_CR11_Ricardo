@@ -15,20 +15,27 @@ $res = mysqli_query($connect, "SELECT * FROM users WHERE userID =" . $_SESSION['
 $row = mysqli_fetch_array($res, MYSQLI_ASSOC);
 
 $sql = "SELECT * FROM animals";
+
+if(isset($_GET['Senior'])){
+    $sql = "SELECT * FROM animals where age >= 8 ";
+}else{
+    $sql = "SELECT * FROM animals";
+}
+
+
 $result = mysqli_query($connect, $sql);
 $tbody = '';
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
         $tbody .= "<tr>
-                <td><img class='img-thumbnail' src='pictures/" . $row['picture'] . "'</td>
-                <td>" . $row['Picture'] . "</td>
-                <td>" . $row['Name'] . "</td>
-                <td>" . $row['Location'] . "</td>
-                <td>" . $row['Description'] . "</td>
-                <td>" . $row['Size'] . "</td>
-                <td>" . $row['Hobbies'] . "</td>
-                <td>" . $row['Breed'] . "</td>
-                <td>" . $row['Color_Pattern'] . "</td>";
+                <td><img src='pictures/".$row['photo']."' class='card-img-top' alt='...'></td>
+                <td>" . $row['name'] . "</td>
+                <td>" . $row['location'] . "</td>
+                <td>" . $row['description'] . "</td>
+                <td>" . $row['size'] . "</td>
+                <td>" . $row['hobbies'] . "</td>
+                <td>" . $row['breed'] . "</td>
+                <td>" . $row['status'] . "</td>";
     }
 } else {
     $tbody = "<tr><td colspan='5'><center>No Data Available</center></td></tr>";
@@ -43,25 +50,19 @@ mysqli_close($connect);
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome - <?php echo $row['first_name']; ?></title>
+  <title>Hello <?php echo $row['first_name']; ?></title>
   <?php require_once 'components/boot.php' ?>
-  <style>
-      .userImage {
-          width: 100%;
-          height: 100%;
-          margin: auto;
-      }
-  </style>
 </head>
 
 <body>
+<?php require_once 'components/nav1.php'?>
+
   <div class="container">
-      <div class="hero">
-          <img class="userImage" src="pictures/<?php echo $row['picture']; ?>" alt="<?php echo $row['first_name']; ?>">
-          <p class="text-white">Hi <?php echo $row['first_name']; ?></p>
-      </div>
-      <div>
       <p class='mt-5 mb-5 display-2 text-center'>Animals</p>
+      <div class="d-flex justify-content-start mt-4 mb-3">
+        <a href="home.php"  class="btn btn-outline-success btn-lg ">Show all pets </a>
+        <a href="home.php?Senior='Senior'" class="btn btn-outline-primary btn-lg"  role="button">Show only senior pets </a>
+      </div>
         <table class='table bg-dark text-light'>
             <thead class='table-secondary'>
                 <tr>
@@ -72,16 +73,13 @@ mysqli_close($connect);
                     <th class='h3'>Size</th>
                     <th class='h3'>Hobbies</th>
                     <th class='h3'>Breed</th>
-                    <th class='h3'>Color</th>
+                    <th class='h3'>Status</th>
                 </tr>
             </thead>
             <tbody>
                 <?= $tbody; ?>
             </tbody>
         </table>
-      </div>
-      <a href="logout.php?logout">Sign Out</a>
-      <a href="update.php?id=<?php echo $_SESSION['user'] ?>">Update your profile</a>
   </div>
 </body>
 </html>

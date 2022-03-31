@@ -11,8 +11,8 @@ if (isset($_SESSION["user"])) {
   exit;
 }
 $class = 'd-none';
-if ($_GET['userID']) {
-  $id = $_GET['userID'];
+if ($_GET['id']) {
+  $id = $_GET['id'];
   $sql = "SELECT * FROM users WHERE userID = {$id}";
   $result = mysqli_query($connect, $sql);
   $data = mysqli_fetch_assoc($result);
@@ -20,16 +20,16 @@ if ($_GET['userID']) {
       $f_name = $data['first_name'];
       $l_name = $data['last_name'];
       $email = $data['email'];
-      $phone_number = $data['phone_number'];
+      $phone = $data['phone'];
       $picture = $data['picture'];
       $address = $data['address'];
       $password = $data['password'];
   }
 }
 if ($_POST) {
-  $id = $_POST['userID'];
+  $id = $_POST['id'];
   $picture = $_POST['picture'];
-  ($picture == "avatar.png") ?: unlink("pictures/$picture");
+  ($picture == "dummy.jpg") ?: unlink("pictures/$picture");
 
   $sql = "DELETE FROM users WHERE userID = {$id}";
   if ($connect->query($sql) === TRUE) {
@@ -68,6 +68,8 @@ mysqli_close($connect);
 </head>
 
 <body>
+<?php require_once 'components/nav.php'?>
+
   <div class="<?php echo $class; ?>" role="alert">
       <p><?php echo ($message) ?? ''; ?></p>
   </div>
@@ -78,7 +80,7 @@ mysqli_close($connect);
           <tr>
               <td><?php echo "$f_name $l_name" ?></td>
               <td><?php echo $email ?></td>
-              <td><?php echo $phone_number ?></td>
+              <td><?php echo $phone ?></td>
               <td><?php echo $address ?></td>
               <td><?php echo $password ?></td>
           </tr>

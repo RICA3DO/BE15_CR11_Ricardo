@@ -43,16 +43,17 @@ if (isset($_POST['btn-login'])) {
 
       $password = hash('sha256', $pass); 
 
-      $sql = "SELECT id, first_name, password, status FROM users WHERE email = '$email'";
+      $sql = "SELECT userID, first_name, password, status FROM users WHERE email = '$email'";
       $result = mysqli_query($connect, $sql);
-      $row = mysqli_fetch_assoc($result);
+      $row = $result->fetch_assoc();
       $count = mysqli_num_rows($result);
+      
       if ($count == 1 && $row['password'] == $password) {
           if ($row['status'] == 'adm') {
-              $_SESSION['adm'] = $row['id'];
+              $_SESSION['adm'] = $row['userID'];
               header("Location: dashboard.php");
           } else {
-              $_SESSION['user'] = $row['id'];
+              $_SESSION['user'] = $row['userID'];
               header("Location: home.php");
           }
       } else {
@@ -75,6 +76,8 @@ mysqli_close($connect);
 </head>
 
 <body>
+<?php require_once 'components/nav.php'?>
+
   <div class="container">
       <form class="w-75" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off">
           <h2>Login</h2>
