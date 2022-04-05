@@ -25,7 +25,7 @@ function file_upload($picture,$source = 'user')
                     //it gives a file name based microseconds
                     $fileNewName = uniqid('') . "." . $fileExtension; // 1233343434.jpg i.e
                     if($source == 'animals'){
-                        $destination = "../pictures/$fileNewName";
+                        $destination = "../../pictures/$fileNewName";
                     }else {
                         $destination = "pictures/$fileNewName";
                     }

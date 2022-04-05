@@ -63,7 +63,7 @@ if ($_GET['animal_id']) {
                 <table class="table">
                 <tr>
                         <th>Picture</th>
-                        <td><input class='form-control' type="file" name="picture"  placeholder="Animal Picture" ></td>
+                        <td><input class='form-control' type="file" name="photo"  placeholder="Animal Picture" ></td>
                     </tr> 
                     <tr>
                         <th>Name</th>
@@ -109,7 +109,7 @@ if ($_GET['animal_id']) {
                     </tr>
                     <tr>
                         <input type= "hidden" name= "animal_id" value= "<?php echo $data['animal_id'] ?>" />
-                        <input type= "hidden" name= "picture" value= "<?php echo $data['photo'] ?>" />
+                        <input type= "hidden" name= "photo" value= "<?php echo $data['photo'] ?>" />
                         <td><button class="btn btn-success" type= "submit">Save Changes</button></td>
                         <td><a href= "index.php"><button class="btn btn-warning" type="button">Back</button></a></td>
                     </tr>

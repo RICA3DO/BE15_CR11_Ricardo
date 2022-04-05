@@ -54,7 +54,7 @@
                 <table class='table'>
                 <tr>
                         <th>Picture</th>
-                        <td><input class='form-control' type="file" name="picture"  placeholder="Animal Picture" ></td>
+                        <td><input class='form-control' type="file" name="photo"  placeholder="Animal Picture" ></td>
                     </tr> 
                     <tr>
                         <th>Name</th>
@@ -62,7 +62,7 @@
                     </tr>    
                     <tr>
                         <th>Address</th>
-                        <td><input class='form-control' type="text" name= "address" placeholder="Address" ></td>
+                        <td><input class='form-control' type="text" name= "location" placeholder="Address" ></td>
                     </tr>
                     <tr>
                         <th>Description</th>

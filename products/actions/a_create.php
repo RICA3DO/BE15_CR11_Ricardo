@@ -11,7 +11,7 @@ if(isset($_SESSION["user"])){
 require_once '../../components/db_connect.php';
 require_once '../../components/file_upload.php';
 if ($_POST) {   
-    $animal_id = $_POST['animal_id'];  
+    //$animal_id = $_POST['animal_id'];  
     $name = $_POST['name'];
     //$picture = $_POST['picture'];
     $petaddress = $_POST["location"];
@@ -68,7 +68,7 @@ if ($_POST) {
 
     </head>
     <body>
-    <?php require_once '../../components/navigation.php'?>
+    <?php require_once '../../components/nav.php'?>
 
         <div class="container">
             <div class="mt-3 mb-3">

@@ -14,7 +14,7 @@ require_once '../../components/file_upload.php';
 if ($_POST) { 
         $animal_id = $_POST['animal_id'];
         $name = $_POST['name'];
-        //$picture = $_POST['photo'];
+        $picture = $_POST['photo'];
         $petaddress = $_POST['location'];
         $description = $_POST['description'];
         $size = $_POST['size'];
@@ -23,13 +23,12 @@ if ($_POST) {
         $breed = $_POST['breed'];
         $status = $_POST['status'];
 
-
     //variable for upload pictures errors is initialized
     $uploadError = '';
 
-    $picture = file_upload($_FILES['picture'], 'products');//file_upload() called  
+    $picture = file_upload($_FILES['photo'], 'animals');//file_upload() called  
     if($picture->error===0){
-        ($_POST["photo"]=="dummy.jpg")?: unlink("../pictures/$_POST[photo]");           
+        ($_POST["photo"]=="dummy.jpg")?: unlink("../../pictures/$_POST[photo]");           
         $sql = "UPDATE animals SET name = '$name', photo = '$picture->fileName', location = '$petaddress', description = '$description', size = '$size', age = '$age', hobbies = '$hobbies', breed = '$breed', status = '$status' WHERE animal_id = {$animal_id}";
     }else{
         $sql = "UPDATE animals SET name = '$name', location = '$petaddress', description = '$description', size = '$size', age = '$age', hobbies = '$hobbies', breed = '$breed', status = '$status' WHERE animal_id = {$animal_id}";
